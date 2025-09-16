@@ -1,6 +1,19 @@
 from fastapi import FastAPI
+from db import SessionDep, create_tables
+from models import Pet, PetCreate
+from utils import Kind
 
-app = FastAPI()
+app = FastAPI(lifespan=create_tables)
+
+
+@app.post("/pets", response_model=Pet)
+async def create_pet(new_pet: PetCreate, session: SessionDep):
+    pet = Pet.model_validate(new_pet)
+    session.add(pet)
+    session.commit()
+    session.refresh(pet)
+    return pet
+
 
 
 @app.get("/")
