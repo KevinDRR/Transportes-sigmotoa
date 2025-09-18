@@ -1,3 +1,12 @@
+POST http://localhost:8000/pets
+Content-Type: application/json
+
+{"name": "perrito",
+"year" : 2021,
+"kind" : "Alligator"
+}
+
+###
 # Test your FastAPI endpoints
 
 GET http://127.0.0.1:8000/
@@ -8,4 +17,12 @@ Accept: application/json
 GET http://127.0.0.1:8000/hello/sigmotoa
 Accept: application/json
 
+
 ###
+
+POST 127.0.0.1:8000/pets
+Accept: application/json
+  name: "Cometa",
+  year: 2022,
+  kind: "Dog"
+

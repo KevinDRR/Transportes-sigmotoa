@@ -1,8 +1,6 @@
 from pydantic import BaseModel
 from sqlmodel import SQLModel, Field
-
 from utils import Kind
-
 
 class PetBase(SQLModel):
     name: str  | None = Field(description="Pet name")
@@ -17,3 +15,11 @@ class PetCreate(PetBase):
 
 class PetUpdate(PetBase):
     pass
+
+class UserBase(SQLModel):
+    name: str | None = Field(description="User name")
+    year: int | None = Field(description="User year")
+    status: bool | None = Field(description="User status", default=True)
+
+class User(UserBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
