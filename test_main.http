@@ -1,28 +1,47 @@
+#Create pet
 POST http://localhost:8000/pets
 Content-Type: application/json
-
 {"name": "perrito",
 "year" : 2021,
 "kind" : "Alligator"
 }
 
 ###
-# Test your FastAPI endpoints
+#create user alive
+POST http://localhost:8000/users/
+Content-Type: application/json
 
-GET http://127.0.0.1:8000/
-Accept: application/json
-
-###
-
-GET http://127.0.0.1:8000/hello/sigmotoa
-Accept: application/json
-
+{"name": "ironman",
+"year" : 1980,
+"status" : true
+}
 
 ###
+#create user die
+POST http://localhost:8000/users/
+Content-Type: application/json
 
-POST 127.0.0.1:8000/pets
+{"name": "hulk",
+"year" : 1970,
+"status" : false
+}
+
+###
+#look all pets
+GET http://localhost:8000/pets/
+Content-Type: application/json
+
+###
+#look all users
+GET http://localhost:8000/users/
+Content-Type: application/json
+
+###
+#look one user
+GET http://localhost:8000/users/1
 Accept: application/json
-  name: "Cometa",
-  year: 2022,
-  kind: "Dog"
+
+
+
+
 
