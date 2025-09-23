@@ -1,5 +1,4 @@
-from fastapi import FastAPI, APIRouter
-from sqlalchemy.event import api
+from fastapi import FastAPI
 
 import pet
 import estudiantes
