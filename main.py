@@ -9,7 +9,7 @@ from db import create_tables
 app = FastAPI(lifespan=create_tables, title="Pet API")
 app.include_router(pet.router, tags=["pet"], prefix="/pets")
 app.include_router(user.router, tags=["user"], prefix="/users")
-app.include_router(estudiantes.router, tags=["estudiantes"], prefix="/estudiantes" )
+#app.include_router(estudiantes.router, tags=["estudiantes"], prefix="/estudiantes" )
 
 
 @app.get("/")
