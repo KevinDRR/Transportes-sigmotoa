@@ -8,7 +8,7 @@ router = APIRouter()
 @router.post("/", response_model=Pet)
 async def create_pet(new_pet: PetCreate, session: SessionDep):
     pet_data = new_pet.model_dump()
-    user_db=session.get_one(User,pet_data.get("user_id"))
+    user_db=session.get(User,pet_data.get("user_id"))
     if not user_db:
         raise HTTPException(status_code=404, detail="User not found")
     pet = Pet.model_validate(pet_data)
