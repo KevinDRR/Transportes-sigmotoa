@@ -17,10 +17,16 @@ class PetBase(SQLModel):
 class VetBase(SQLModel):
     name: str | None = Field(description="Vet name")
 
+class AppointmentBase(SQLModel):
+    pet_id: int
+    vet_id: int
 
-class Appointment(SQLModel, table=True):
+class Appointment(AppointmentBase, table=True):
+    vet_id: int | None = Field(default=None,foreign_key="vet.id", primary_key=True)
     pet_id: int | None = Field(default=None, foreign_key="pet.id", primary_key=True)
-    vet_id: int | None = Field(default=None, foreign_key="vet.id", primary_key=True)
+    date: datetime.datetime | None = Field(default_factory=datetime.datetime.now)
+
+
 
 class User(UserBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
@@ -32,35 +38,28 @@ class Pet(PetBase, table=True):
     user_id:int =Field(foreign_key="user.id")
     user: User = Relationship(back_populates="pets")
 
-    vets: list["Vet"] = Relationship(back_populates="pets", link_model="Appointment")
+    vets: list["Vet"] = Relationship(back_populates="pets", link_model=Appointment)
 
 class Vet(VetBase, table=True):
-    pets: list["Pet"] = Relationship(back_populates="vets", link_model="Appointment")
+    id: int | None = Field(default=None, primary_key=True)
+    pets: list["Pet"] = Relationship(back_populates="vets", link_model=Appointment)
 
 class UserCreate(UserBase):
     pass
 
 
-
-
-
 class PetCreate(PetBase):
     user_id:int =Field(foreign_key="user.id")
-
 
 class PetUpdate(PetBase):
     pass
 
 
-
-
 class VetCreate(VetBase):
-    id: int | None = Field(default=None, primary_key=True)
+    pass
 
 
-
-class AppointmentCreate(Appointment):
-    date: datetime.datetime | None = Field(default_factory=datetime.datetime.now())
-
+class AppointmentCreate(AppointmentBase):
+    pass
 
 
