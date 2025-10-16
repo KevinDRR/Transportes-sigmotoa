@@ -303,5 +303,5 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-pets.sqlite3
 pets1.sqlite3
+pets.sqlite3

@@ -1,9 +1,11 @@
 #Create pet
 POST http://localhost:8000/pets
 Content-Type: application/json
-{"name": "perrito",
+
+{"name": "gatito",
 "year" : 2021,
-"kind" : "Alligator"
+"kind" : "Cat",
+"user_id":1
 }
 
 ###
