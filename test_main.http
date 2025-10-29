@@ -1,49 +1,19 @@
-#Create pet
-POST http://localhost:8000/pets
-Content-Type: application/json
+#
 
-{"name": "gatito",
-"year" : 2021,
-"kind" : "Cat",
-"user_id":1
+#Create destination
+{"city": "Medellin",
+"distance": 420.5,
+"price": 150000
 }
 
-###
-#create user alive
-POST http://localhost:8000/users/
-Content-Type: application/json
-
-{"name": "ironman",
-"year" : 1980,
-"status" : true
+#Create vehicle
+{"plate": "ABZ-532",
+"model" : "Mercedez",
+"capacity" : 15,
+"driver" : "John",
+"destination_id":1
 }
 
-###
-#create user die
-POST http://localhost:8000/users/
-Content-Type: application/json
-
-{"name": "hulk",
-"year" : 1970,
-"status" : false
-}
-
-###
-#look all pets
-GET http://localhost:8000/pets/
-Content-Type: application/json
-
-###
-#look all users
-GET http://localhost:8000/users/
-Content-Type: application/json
-
-###
-#look one user
-GET http://localhost:8000/users/1
-Accept: application/json
-
-
-
-
-
+#Others
+.venv\Scripts\activate
+uvicorn main:app --reload

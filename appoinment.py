@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from db import SessionDep
-from models import AppointmentCreate, Pet, Vet, Appointment
+from models import AppointmentCreate, Vehicle, Destination, Appointment
 
 router = APIRouter( )
 
@@ -8,19 +8,18 @@ router = APIRouter( )
 @router.post("/", response_model=Appointment)
 async def create_appoinment(new_appoinment: AppointmentCreate, session: SessionDep):
     data = new_appoinment.model_dump()
-    vet_id = data.get("vet_id")
-    pet_id = data.get("pet_id")
-    vet_db=session.get(Vet,vet_id)
-    pet_db=session.get(Pet,pet_id)
+    destination_id = data.get("destination_id")
+    vehicle_id = data.get("vehicle_id")
+    vehicle_db=session.get(Vehicle,vehicle_id)
+    destination_db=session.get(Destination,destination_id)
 
-    if not vet_db or not pet_db:
-        raise HTTPException(status_code=404, detail="Pet or Vet not found")
+    if not destination_db or not vehicle_db:
+        raise HTTPException(status_code=404, detail="Vehicle or destination not found")
 
-    appoinment=Appointment.model_validate(data)
-    session.add(appoinment)
+    appointment = Appointment.model_validate(data)
+    session.add(appointment)
     session.commit()
-    session.refresh(appoinment)
+    session.refresh(appointment)
 
-
-    return appoinment
+    return appointment
 
