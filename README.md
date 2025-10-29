@@ -26,8 +26,10 @@ cd Dev_25_3_projectMars
 2. Crear y activar un entorno virtual:
 ```bash
 python -m venv .venv
+# En Windows:
 .venv\Scripts\activate
-
+# En Unix o MacOS:
+source .venv/bin/activate
 ```
 
 3. Instalar dependencias:
@@ -92,4 +94,4 @@ POST /
 
 ## Base de Datos
 
-El sistema utiliza SQLite como base de datos, almacenada en el archivo `Transport.sqlite3`, la estructura de la base de datos se maneja automáticamente a través de SQLModel.
+El sistema utiliza SQLite como base de datos, almacenada en el archivo `Transport.sqlite3`. La estructura de la base de datos se maneja automáticamente a través de SQLModel.

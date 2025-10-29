@@ -1,5 +1,3 @@
-#
-
 #Create destination
 {"city": "Medellin",
 "distance": 420.5,
@@ -15,5 +13,6 @@
 }
 
 #Others
+
 .venv\Scripts\activate
 uvicorn main:app --reload
